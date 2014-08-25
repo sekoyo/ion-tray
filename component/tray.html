@@ -1,0 +1,169 @@
+<html>
+	<template id="tray-tpl">
+		<style>
+			.tray {
+				overflow: hidden;
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
+			.tray-slider {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				width: 100%;
+				height: 100%;
+			}
+			.tray-item {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+			}
+			.tray-left {
+				right: 100%;
+			}
+			.tray-center {
+			}
+			.tray-right {
+				left: 100%;
+			}
+			.tray-overlay {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: transparent;
+			}
+			.side-tray-visible .tray-overlay {
+				display: block;
+			}
+		</style>
+		<div class="tray">
+			<div class="tray-slider">
+				<div class="tray-item tray-left">
+					<content select=".tray-left"></content>
+				</div>
+				<div class="tray-item tray-center">
+					<content select=".tray-center"></content>
+					<div class="tray-overlay"></div>
+				</div>
+				<div class="tray-item tray-right">
+					<content select=".tray-right"></content>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<script>
+		(function() {
+			'use strict';
+
+			/**
+			 * Sets or clears x transform.
+			 * @param {Node} el Element to transform.
+			 * @param {String|Null} x The value (including unit) or null to clear transform.
+			 */
+			var setXTransform = function (el, x) {
+				var value = x ?
+					'translate3d(' + x + ', 0, 0)' :
+					x;
+
+				if (el.style.webkitTransform !== undefined) {
+					el.style.webkitTransform = value;
+				}
+
+				el.style.transform = value;
+			};
+
+			/**
+			 * Shows the left tray.
+			 */
+			var showLeftTray = function () {
+				// For shadow-root styling.
+				var trayContainer = this.shadowRoot.querySelector('.tray-slider');
+				trayContainer.classList.add('side-tray-visible');
+
+				var leftTray = this.querySelector('.tray-left');
+				var leftTrayWidth = leftTray.getAttribute('data-width') || '100%';
+
+				// Set tray width.
+				this.shadowRoot.querySelector('.tray-left').style.width = leftTrayWidth;
+
+				// Move the tray container position.
+				setXTransform(trayContainer, leftTrayWidth);
+			};
+
+			/**
+			 * Shows the right tray.
+			 */
+			var showRightTray = function () {
+				// For shadow-root styling.
+				var trayContainer = this.shadowRoot.querySelector('.tray-slider');
+				trayContainer.classList.add('side-tray-visible');
+
+				var rightTray = this.querySelector('.tray-right');
+				var rightTrayWidth = rightTray.getAttribute('data-width') || '100%';
+
+				// Set tray width.
+				this.shadowRoot.querySelector('.tray-right').style.width = rightTrayWidth;
+
+				// Move the tray container position.
+				setXTransform(trayContainer, '-' + rightTrayWidth);
+			};
+
+			/**
+			 * Resets tray to center position.
+			 */
+			var showCenterTray = function () {
+				var trayContainer = this.shadowRoot.querySelector('.tray-slider');
+				trayContainer.classList.remove('side-tray-visible');
+
+				setXTransform(trayContainer, null);
+			};
+
+			// Gets a handle to this import doc.
+			var importDoc = document.currentScript.ownerDocument;
+
+			// Creates an object based in the HTML Element prototype.
+			var element = Object.create(HTMLElement.prototype);
+
+			// Fires when an instance of the element is created.
+			element.createdCallback = function () {
+				// Create a shadow root.
+				var shadow = this.createShadowRoot();
+
+				// Get a reference to the template.
+				var template = importDoc.querySelector('#tray-tpl');
+
+				// Append a deep clone of the template into the shadow.
+				shadow.appendChild(template.content.cloneNode(true));
+
+				// Events.
+				this.addEventListener('showLeftTray', showLeftTray.bind(this), false);
+				this.addEventListener('showRightTray', showRightTray.bind(this), false);
+				this.addEventListener('showCenterTray', showCenterTray.bind(this), false);
+				shadow.querySelector('.tray-overlay').addEventListener('click', showCenterTray.bind(this), false);
+			};
+
+			// Fires when an instance was inserted into the document.
+			// element.attachedCallback = function() {};
+
+			// Fires when an instance was removed from the document.
+			// element.detachedCallback = function() {};
+
+			// Fires when an attribute was added, removed, or updated.
+			// element.attributeChangedCallback = function(attr, oldVal, newVal) {};
+
+			document.registerElement('ion-tray', {
+				prototype: element
+			});
+		}());
+	</script>
+</html>

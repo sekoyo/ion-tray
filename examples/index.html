@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ion Tray Example</title>
+	<link rel="import" href="../component/tray.html">
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+	<style>
+		.demo-controls {
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			padding: 15px;
+			text-align: center;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+		ion-tray::shadow .tray-left {
+			background-color: black;
+			color: white;
+		}
+		ion-tray::shadow .tray-center {
+			background-color: lightgrey;
+		}
+		ion-tray::shadow .side-tray-visible .tray-center {
+			background-color: red;
+		}
+		ion-tray::shadow .tray-right {
+			background-color: purple;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<ion-tray>
+		<section class="tray-left" data-width="260px">
+			<p>Tray left</p>
+			<p>Tray left</p>
+			<p>Tray left</p>
+			<p>Tray left</p>
+			<p>Tray left</p>
+			<p>Tray left</p>
+		</section>
+		<section class="tray-center">
+			<p>Center tray</p>
+		</section>
+		<section class="tray-right" data-width="50%">
+			<p>Right tray</p>
+			<p>Right tray</p>
+			<p>Right tray</p>
+			<p>Right tray</p>
+			<p>Right tray</p>
+			<p>Right tray</p>
+		</section>
+	</ion-tray>
+
+	<div class="demo-controls">
+		<button class="show-left-tray">Show left tray</button>
+		<button class="show-center-tray">Show center tray</button>
+		<button class="show-right-tray">Show right tray</button>
+	</div>
+
+	<script>
+		var ionTray = document.querySelector('ion-tray');
+		var showLeftTrayBtn = document.querySelector('.show-left-tray');
+		var showCenterTrayBtn = document.querySelector('.show-center-tray');
+		var showRightTrayBtn = document.querySelector('.show-right-tray');
+
+		showLeftTrayBtn.addEventListener('click', function () {
+			ionTray.dispatchEvent(new Event('showLeftTray'));
+		});
+
+		showCenterTrayBtn.addEventListener('click', function () {
+			ionTray.dispatchEvent(new Event('showCenterTray'));
+		});
+
+		showRightTrayBtn.addEventListener('click', function () {
+			ionTray.dispatchEvent(new Event('showRightTray'));
+		});
+	</script>
+</body>
+</html>
