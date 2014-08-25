@@ -1,0 +1,22 @@
+{
+  "name": "ion-tray",
+  "version": "1.0.0",
+  "homepage": "https://github.com/DominicTobias/ion-tray",
+  "authors": [
+    "Dominic <dominic.tobias@gmail.com>"
+  ],
+  "description": "A Web Component which enables you to have central content with a left and right tray which can 'push' into view",
+  "main": "component/part.html",
+  "keywords": [
+    "web-component",
+    "io-tray"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
