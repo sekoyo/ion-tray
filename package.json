@@ -11,10 +11,8 @@
     "url": "git@github.com:DominicTobias/ion-tray.git"
   },
   "keywords": [
-    "ion",
-    "tray",
-    "web",
-    "component"
+    "web-component",
+    "ion-tray"
   ],
   "author": "Dominic Tobias <dominic.tobias@gmail.com> (http://dominictobias.com/)",
   "license": "MIT",
