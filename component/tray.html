@@ -9,7 +9,7 @@
 				bottom: 0;
 				left: 0;
 			}
-			.tray-slider {
+			.tray-container {
 				-webkit-transform: translate3d(0, 0, 0);
 				transform: translate3d(0, 0, 0);
 				width: 100%;
@@ -45,7 +45,7 @@
 			}
 		</style>
 		<div class="tray">
-			<div class="tray-slider">
+			<div class="tray-container">
 				<div class="tray-item tray-left">
 					<content select=".tray-left"></content>
 				</div>
@@ -86,7 +86,7 @@
 			 */
 			var showLeftTray = function () {
 				// For shadow-root styling.
-				var trayContainer = this.shadowRoot.querySelector('.tray-slider');
+				var trayContainer = this.shadowRoot.querySelector('.tray-container');
 				trayContainer.classList.add('side-tray-visible');
 
 				var leftTray = this.querySelector('.tray-left');
@@ -104,7 +104,7 @@
 			 */
 			var showRightTray = function () {
 				// For shadow-root styling.
-				var trayContainer = this.shadowRoot.querySelector('.tray-slider');
+				var trayContainer = this.shadowRoot.querySelector('.tray-container');
 				trayContainer.classList.add('side-tray-visible');
 
 				var rightTray = this.querySelector('.tray-right');
@@ -121,7 +121,7 @@
 			 * Resets tray to center position.
 			 */
 			var showCenterTray = function () {
-				var trayContainer = this.shadowRoot.querySelector('.tray-slider');
+				var trayContainer = this.shadowRoot.querySelector('.tray-container');
 				trayContainer.classList.remove('side-tray-visible');
 
 				setXTransform(trayContainer, null);
