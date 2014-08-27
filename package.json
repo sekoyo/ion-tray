@@ -1,6 +1,6 @@
 {
   "name": "ion-tray",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Web Component which enables you to have central content with a left and right tray which can 'push' into view",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git@github.com:DominicTobias/ion-tray.git"
   },
   "keywords": [
-    "web-component",
+    "web-components",
     "ion-tray"
   ],
   "author": "Dominic Tobias <dominic.tobias@gmail.com> (http://dominictobias.com/)",
