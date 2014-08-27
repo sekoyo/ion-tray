@@ -10,7 +10,7 @@ A Web Component which enables you to have central content with a left and right 
 		Left tray content
 	</section>
 	<section class="tray-center">
-		Right tray content
+		Center tray content
 	</section>
 	<section class="tray-right" data-width="50%">
 		Right tray content
